@@ -22,23 +22,18 @@
 </template>
 
 <script>
-import axios from 'axios'
+import { mapGetters } from 'vuex'
+// import axios from 'axios'
 export default {
   name: 'hello',
-  data () {
-    return {
-      msg: 'Welcome to Your Vue.js App'
-    }
+  computed: {
+    ...mapGetters({
+      msg: 'text'
+    })
   },
   methods: {
     requests (event) {
-      // 请求数据
-      axios.get('/test.json').then((response) => {
-        console.log(response.data.text)
-        this.msg = response.data.text
-      }).catch((error) => {
-        alert(error)
-      })
+      this.$store.dispatch('getText')
     }
   }
 }
